@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="Skapar GUI klass">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="rätt länk (detta fall star wars)">
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,11 +66,19 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1702472997134</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="rätt länk (detta fall star wars)">
+      <option name="closed" value="true" />
+      <created>1702476173629</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1702476173629</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Skapar GUI klass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Skapar GUI klass" />
+    <MESSAGE value="rätt länk (detta fall star wars)" />
+    <option name="LAST_COMMIT_MESSAGE" value="rätt länk (detta fall star wars)" />
   </component>
 </project>

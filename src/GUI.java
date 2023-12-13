@@ -9,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class GUI extends JFrame {
-    static String databaseUrl = "https://www.omdbapi.com/?apikey=eee5649f&t=pokemon";
 
 
     public GUI(){
@@ -49,17 +48,17 @@ public class GUI extends JFrame {
         JLabel rating = new JLabel("RATING");
         lowRight.add(rating);
 
-        getRequests(databaseUrl);
+        getRequests("star+wars");
 
         setVisible(true);
 
     }
-    public static void getRequests(String databasePath) {
+    public static void getRequests(String movie) {
 
         try {
 
             // Create the URL for the HTTP GET request
-            URL url = new URL("https://www.omdbapi.com/?apikey=eee5649f&t=star+wars");
+            URL url = new URL("https://www.omdbapi.com/?apikey=eee5649f&t="+movie);
 
 
             // Open a connection to the URL
