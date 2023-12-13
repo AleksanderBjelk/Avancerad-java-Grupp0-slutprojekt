@@ -9,7 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class GUI extends JFrame {
-    static String databaseUrl = "https://mobilt-java-22-default-rtdb.europe-west1.firebasedatabase.app/";
+    static String databaseUrl = "https://www.omdbapi.com/?apikey=eee5649f&t=pokemon";
+
 
     public GUI(){
         setSize(700,600);
@@ -22,7 +23,7 @@ public class GUI extends JFrame {
         left.setLayout(new GridLayout(4,0));
         add(left);
 
-        JLabel title = new JLabel("TITLE");
+        JLabel title = new JLabel("TITLE:");
         left.add(title);
         JLabel actors = new JLabel("ACTORS");
         left.add(actors);
@@ -54,12 +55,11 @@ public class GUI extends JFrame {
 
     }
     public static void getRequests(String databasePath) {
-        String databaseUrl = "https://mobilt-java-22-default-rtdb.europe-west1.firebasedatabase.app/";
 
         try {
 
             // Create the URL for the HTTP GET request
-            URL url = new URL("https://mobilt-java-22-default-rtdb.europe-west1.firebasedatabase.app/.json");
+            URL url = new URL("https://www.omdbapi.com/?apikey=eee5649f&t=star+wars");
 
 
             // Open a connection to the URL

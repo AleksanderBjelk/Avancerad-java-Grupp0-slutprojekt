@@ -1,0 +1,125 @@
+Index: src/GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\nimport java.awt.*;\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.net.HttpURLConnection;\nimport java.net.URL;\n\npublic class GUI extends JFrame {\n\n    public GUI(){\n        setSize(700,600);\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\n        setLayout(new GridLayout(0,2));\n\n\n        JPanel left = new JPanel();\n        left.setBorder(BorderFactory.createDashedBorder(Color.BLACK));\n        left.setLayout(new GridLayout(4,0));\n        add(left);\n\n        JLabel title = new JLabel(\"TITLE\");\n        left.add(title);\n        JLabel actors = new JLabel(\"ACTORS\");\n        left.add(actors);\n        JLabel release = new JLabel(\"RELEASE\");\n        left.add(release);\n        JLabel plot = new JLabel(\"plotplotplotplotplotplotplotplotplotplotplotplot\");\n        left.add(plot);\n\n\n        JPanel right = new JPanel();\n        right.setBorder(BorderFactory.createDashedBorder(Color.BLACK));\n        right.setLayout(new GridLayout(2,0));\n        add(right);\n\n        JPanel topRight = new JPanel();\n        right.add(topRight);\n\n        JPanel lowRight = new JPanel();\n        right.add(lowRight);\n\n        JLabel pic = new JLabel(\"PICTURE\");\n        topRight.add(pic);\n        JLabel rating = new JLabel(\"RATING\");\n        lowRight.add(rating);\n\n        setVisible(true);\n\n    }\n    public static void getRequests(String databasePath) {\n        String databaseUrl = \"https://mobilt-java-22-default-rtdb.europe-west1.firebasedatabase.app/\";\n\n        try {\n\n            // Create the URL for the HTTP GET request\n            URL url = new URL(\"https://mobilt-java-22-default-rtdb.europe-west1.firebasedatabase.app/.json\");\n\n\n            // Open a connection to the URL\n            HttpURLConnection connection = (HttpURLConnection) url.openConnection();\n\n            // Set the request method to GET\n            connection.setRequestMethod(\"GET\"); //POST , PATCH , DELETE\n\n            // Get the response code t.ex 400, 404, 200 är ok\n            int responseCode = connection.getResponseCode();\n\n            if (responseCode == HttpURLConnection.HTTP_OK) { // ok är bra\n                // Read the response from the InputStream\n                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));\n                String line;\n                StringBuilder response = new StringBuilder();\n\n                while ((line = reader.readLine()) != null) {\n                    response.append(line);\n                }\n                reader.close();\n\n                // Handle the response data\n                System.out.println(\"Response from Firebase Realtime Database:\");\n                System.out.println(response);\n                TextArea ta = new TextArea(response.toString());\n            } else { //404 403 402 etc error koder\n                // Handle the error response\n                System.out.println(\"Error response code: \" + responseCode);\n            }\n\n            // Close the connection\n            connection.disconnect();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GUI.java b/src/GUI.java
+--- a/src/GUI.java	(revision 1f707f4b6f8a82522e6f54ddfcb153b5938d3b67)
++++ b/src/GUI.java	(date 1702475669026)
+@@ -8,6 +8,7 @@
+ 
+ public class GUI extends JFrame {
+ 
++
+     public GUI(){
+         setSize(700,600);
+         setDefaultCloseOperation(EXIT_ON_CLOSE);
+@@ -19,7 +20,7 @@
+         left.setLayout(new GridLayout(4,0));
+         add(left);
+ 
+-        JLabel title = new JLabel("TITLE");
++        JLabel title = new JLabel("TITLE:");
+         left.add(title);
+         JLabel actors = new JLabel("ACTORS");
+         left.add(actors);
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"9def1818-8444-48ff-b55a-d00ed9a9af3a\" name=\"Changes\" comment=\"\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectColorInfo\"><![CDATA[{\n  \"associatedIndex\": 5\n}]]></component>\n  <component name=\"ProjectId\" id=\"2ZRDKQnVAO6d6Eanm1we01JYUIu\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"git-widget-placeholder\": \"main\"\n  }\n}]]></component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"9def1818-8444-48ff-b55a-d00ed9a9af3a\" name=\"Changes\" comment=\"\" />\n      <created>1702375936237</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1702375936237</updated>\n    </task>\n    <servers />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 1f707f4b6f8a82522e6f54ddfcb153b5938d3b67)
++++ b/.idea/workspace.xml	(date 1702475390814)
+@@ -1,31 +1,56 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="" />
++    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="Skapar GUI klass">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++      </list>
++    </option>
++  </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 5
+-}]]></component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 5
++}</component>
+   <component name="ProjectId" id="2ZRDKQnVAO6d6Eanm1we01JYUIu" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "main"
+-  }
+-}]]></component>
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;
++  }
++}</component>
++  <component name="RunManager">
++    <configuration name="Project" type="Application" factoryName="Application">
++      <option name="MAIN_CLASS_NAME" value="Main" />
++      <module name="Avancerad-java-Grupp0-slutprojekt" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++  </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -35,6 +60,18 @@
+       <option name="presentableId" value="Default" />
+       <updated>1702375936237</updated>
+     </task>
++    <task id="LOCAL−00001" summary="Skapar GUI klass">
++      <option name="closed" value="true" />
++      <created>1702472997134</created>
++      <option name="number" value="LOCAL−00001" />
++      <option name="presentableId" value="LOCAL−00001" />
++      <updated>1702472997134</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Skapar GUI klass" />
++    <option name="LAST_COMMIT_MESSAGE" value="Skapar GUI klass" />
++  </component>
+ </project>
+\ No newline at end of file
