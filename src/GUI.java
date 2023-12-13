@@ -54,9 +54,8 @@ public class GUI extends JFrame {
         try {
 
             // Create the URL for the HTTP GET request
-            //URL url = new URL(databaseUrl + databasePath);
             URL url = new URL("https://mobilt-java-22-default-rtdb.europe-west1.firebasedatabase.app/.json");
-            //URL url = new URL("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=0.5");  // Cheapshark
+
 
             // Open a connection to the URL
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -66,7 +65,7 @@ public class GUI extends JFrame {
 
             // Get the response code t.ex 400, 404, 200 är ok
             int responseCode = connection.getResponseCode();
-            //  System.out.println("response code:" +responseCode);
+
             if (responseCode == HttpURLConnection.HTTP_OK) { // ok är bra
                 // Read the response from the InputStream
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
