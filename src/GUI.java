@@ -1,3 +1,5 @@
+import org.w3c.dom.CDATASection;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -7,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class GUI extends JFrame {
+    static String databaseUrl = "https://mobilt-java-22-default-rtdb.europe-west1.firebasedatabase.app/";
 
     public GUI(){
         setSize(700,600);
@@ -44,6 +47,8 @@ public class GUI extends JFrame {
         topRight.add(pic);
         JLabel rating = new JLabel("RATING");
         lowRight.add(rating);
+
+        getRequests(databaseUrl);
 
         setVisible(true);
 
