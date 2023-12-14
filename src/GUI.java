@@ -26,16 +26,20 @@ public class GUI extends JFrame {
 
 
         JPanel left = new JPanel();
-        JPanel leftTopPanel = new JPanel();
-
-        left.add(leftTopPanel);
-        leftTopPanel.setLayout(new BorderLayout());
-        left.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         left.setLayout(new GridLayout(5, 0));
+        left.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         add(left);
+
+        JPanel leftTopPanel = new JPanel();
+        leftTopPanel.setLayout(new BorderLayout());
+        leftTopPanel.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+        left.add(leftTopPanel);
 
         searchField = new JTextField();
         leftTopPanel.add(searchField, BorderLayout.NORTH);
+
+        JButton button = new JButton("Search");
+        left.add(button);
 
         JLabel title = new JLabel("TITLE:");
         left.add(title);
@@ -71,11 +75,8 @@ public class GUI extends JFrame {
         JPanel lowRight = new JPanel();
         right.add(lowRight);
 
-        JLabel pic = new JLabel("PICTURE");
-        topRight.add(pic);
         JLabel rating = new JLabel("RATING");
         lowRight.add(rating);
-
 
         posterLabel = new JLabel();
         topRight.add(posterLabel);
