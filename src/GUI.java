@@ -39,9 +39,11 @@ public class GUI extends JFrame {
 
         searchField = new JTextField();
         leftTopPanel.add(searchField, BorderLayout.NORTH);
+        JButton search = new JButton("Search");
+        leftTopPanel.add(search, BorderLayout.CENTER);
 
-        JButton button = new JButton("Search");
-        left.add(button);
+        JLabel space = new JLabel();
+        left.add(space);
 
         JLabel title = new JLabel("TITLE:");
         left.add(title);
