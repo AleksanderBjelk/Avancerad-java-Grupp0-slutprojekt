@@ -1,5 +1,3 @@
-import org.w3c.dom.CDATASection;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import javax.swing.*;
@@ -13,10 +11,10 @@ import java.net.URL;
 public class GUI extends JFrame {
 
     private static JTextField searchField;
-    private JLabel titleField;
-    private JLabel actorsField;
-    private JLabel releaseField;
-    private JLabel plotField;
+    private JLabel titleLabel;
+    private JLabel actorsLabel;
+    private JLabel releaseLabel;
+    private JLabel plotLabel;
     private JLabel posterLabel;
 
     private JLabel ratingLabel;
@@ -47,25 +45,25 @@ public class GUI extends JFrame {
 
         JLabel title = new JLabel("TITLE:");
         left.add(title);
-        titleField = new JLabel();
-        left.add(titleField);
+        titleLabel = new JLabel();
+        left.add(titleLabel);
 
         JLabel actors = new JLabel("ACTORS:");
         left.add(actors);
-        actorsField = new JLabel();
-        left.add(actorsField);
+        actorsLabel = new JLabel();
+        left.add(actorsLabel);
 
 
         JLabel release = new JLabel("RELEASE DATE:");
         left.add(release);
-        releaseField = new JLabel();
-        left.add(releaseField);
+        releaseLabel = new JLabel();
+        left.add(releaseLabel);
 
 
         JLabel plot = new JLabel("PLOT:");
         left.add(plot);
-        plotField = new JLabel();
-        left.add(plotField);
+        plotLabel = new JLabel();
+        left.add(plotLabel);
 
 
         JPanel right = new JPanel();
@@ -91,10 +89,10 @@ public class GUI extends JFrame {
     }
 
     public void updateFields(String title, String actors, String release, String plot, String posterURL, String rating) {
-        titleField.setText(title);
-        actorsField.setText(actors);
-        releaseField.setText(release);
-        plotField.setText(plot);
+        titleLabel.setText(title);
+        actorsLabel.setText(actors);
+        releaseLabel.setText(release);
+        plotLabel.setText(plot);
         ratingLabel.setText(rating);
         try {
         ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
