@@ -1,5 +1,7 @@
 import org.w3c.dom.CDATASection;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -10,31 +12,56 @@ import java.net.URL;
 
 public class GUI extends JFrame {
 
+    private static JTextField searchField;
+    private JTextField titleField;
+    private JTextField actorsField;
+    private JTextField releaseField;
+    private JTextField plotField;
 
-    public GUI(){
-        setSize(700,600);
+    public GUI() {
+        setSize(700, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new GridLayout(0,2));
+        setLayout(new GridLayout(0, 2));
 
 
         JPanel left = new JPanel();
+        JPanel leftTopPanel = new JPanel();
+
+        left.add(leftTopPanel);
+        leftTopPanel.setLayout(new BorderLayout());
         left.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
-        left.setLayout(new GridLayout(4,0));
+        left.setLayout(new GridLayout(5, 0));
         add(left);
+
+        searchField = new JTextField();
+        leftTopPanel.add(searchField, BorderLayout.NORTH);
 
         JLabel title = new JLabel("TITLE:");
         left.add(title);
-        JLabel actors = new JLabel("ACTORS");
+        titleField = new JTextField();
+        left.add(titleField);
+
+        JLabel actors = new JLabel("ACTORS:");
         left.add(actors);
-        JLabel release = new JLabel("RELEASE");
+        actorsField = new JTextField();
+        left.add(actorsField);
+
+
+        JLabel release = new JLabel("RELEASE DATE:");
         left.add(release);
-        JLabel plot = new JLabel("plotplotplotplotplotplotplotplotplotplotplotplot");
+        releaseField = new JTextField();
+        left.add(releaseField);
+
+
+        JLabel plot = new JLabel("PLOT:");
         left.add(plot);
+        plotField = new JTextField();
+        left.add(plotField);
 
 
         JPanel right = new JPanel();
         right.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
-        right.setLayout(new GridLayout(2,0));
+        right.setLayout(new GridLayout(2, 0));
         add(right);
 
         JPanel topRight = new JPanel();
@@ -48,17 +75,29 @@ public class GUI extends JFrame {
         JLabel rating = new JLabel("RATING");
         lowRight.add(rating);
 
-        getRequests("star+wars");
 
         setVisible(true);
 
+        searchField.addActionListener(e -> {
+            String searchTerm = searchField.getText();
+            getRequests(searchTerm, this); // Anropa getRequests med filmtiteln och 'this' GUI-instansen
+        });
+
     }
-    public static void getRequests(String movie) {
+
+    public void updateFields(String title, String actors, String release, String plot) {
+        titleField.setText(title);
+        actorsField.setText(actors);
+        releaseField.setText(release);
+        plotField.setText(plot);
+    }
+
+    public static void getRequests(String movie, GUI gui) {
 
         try {
 
             // Create the URL for the HTTP GET request
-            URL url = new URL("https://www.omdbapi.com/?apikey=eee5649f&t="+movie);
+            URL url = new URL("https://www.omdbapi.com/?apikey=eee5649f&t=" + movie);
 
 
             // Open a connection to the URL
@@ -82,9 +121,18 @@ public class GUI extends JFrame {
                 reader.close();
 
                 // Handle the response data
-                System.out.println("Response from Firebase Realtime Database:");
+                System.out.println("OMDb API");
                 System.out.println(response);
-                TextArea ta = new TextArea(response.toString());
+
+                Gson gson = new Gson();
+                JsonObject jsonObject = gson.fromJson(response.toString(), JsonObject.class);
+
+                String title = jsonObject.get("Title").getAsString();
+                String actors = jsonObject.get("Actors").getAsString();
+                String release = jsonObject.get("Released").getAsString();
+                String plot = jsonObject.get("Plot").getAsString();
+
+                SwingUtilities.invokeLater(() -> gui.updateFields(title, actors, release, plot));
             } else { //404 403 402 etc error koder
                 // Handle the error response
                 System.out.println("Error response code: " + responseCode);
@@ -95,5 +143,9 @@ public class GUI extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(GUI::new);
     }
 }
