@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="Lägger till texfields, json parsing och att man kan använda &quot;searchField&quot; som sökning">
+    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="fixar så vi får en bild">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-12-14__14_09__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-12-14__14_09__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
@@ -94,7 +94,14 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1702544701648</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="fixar så vi får en bild">
+      <option name="closed" value="true" />
+      <created>1702562568547</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1702562568547</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -102,6 +109,7 @@
     <MESSAGE value="rätt länk (detta fall star wars)" />
     <MESSAGE value="variabel movie" />
     <MESSAGE value="Lägger till texfields, json parsing och att man kan använda &quot;searchField&quot; som sökning" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lägger till texfields, json parsing och att man kan använda &quot;searchField&quot; som sökning" />
+    <MESSAGE value="fixar så vi får en bild" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixar så vi får en bild" />
   </component>
 </project>

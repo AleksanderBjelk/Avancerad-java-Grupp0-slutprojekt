@@ -19,6 +19,8 @@ public class GUI extends JFrame {
     private JLabel plotField;
     private JLabel posterLabel;
 
+    private JLabel ratingLabel;
+
     public GUI() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -75,8 +77,8 @@ public class GUI extends JFrame {
         JPanel lowRight = new JPanel();
         right.add(lowRight);
 
-        JLabel rating = new JLabel("RATING");
-        lowRight.add(rating);
+        ratingLabel = new JLabel("RATING");
+        lowRight.add(ratingLabel);
 
         posterLabel = new JLabel();
         topRight.add(posterLabel);
@@ -90,11 +92,12 @@ public class GUI extends JFrame {
 
     }
 
-    public void updateFields(String title, String actors, String release, String plot, String posterURL) {
+    public void updateFields(String title, String actors, String release, String plot, String posterURL, String rating) {
         titleField.setText(title);
         actorsField.setText(actors);
         releaseField.setText(release);
         plotField.setText(plot);
+        ratingLabel.setText(rating);
         try {
         ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
         posterLabel.setIcon(posterIcon);
@@ -147,8 +150,9 @@ public class GUI extends JFrame {
                 String release = jsonObject.get("Released").getAsString();
                 String plot = jsonObject.get("Plot").getAsString();
                 String posterURL = jsonObject.get("Poster").getAsString();
+                String rating = jsonObject.get("imdbRating").getAsString();
 
-                SwingUtilities.invokeLater(() -> gui.updateFields(title, actors, release, plot, posterURL));
+                SwingUtilities.invokeLater(() -> gui.updateFields(title, actors, release, plot, posterURL, rating));
             } else { //404 403 402 etc error koder
                 // Handle the error response
                 System.out.println("Error response code: " + responseCode);
