@@ -79,7 +79,9 @@ public class GUI extends JFrame {
         JPanel lowRight = new JPanel();
         right.add(lowRight);
 
-        ratingLabel = new JLabel("RATING");
+        JLabel rating = new JLabel("RATING:");
+        lowRight.add(rating);
+        ratingLabel = new JLabel();
         lowRight.add(ratingLabel);
 
         posterLabel = new JLabel();
