@@ -17,6 +17,7 @@ public class GUI extends JFrame {
     private JLabel actorsField;
     private JLabel releaseField;
     private JLabel plotField;
+    private JLabel posterLabel;
 
     public GUI() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -76,21 +77,34 @@ public class GUI extends JFrame {
         lowRight.add(rating);
 
 
+        posterLabel = new JLabel();
+        topRight.add(posterLabel);
+
         setVisible(true);
 
         searchField.addActionListener(e -> {
             String searchTerm = searchField.getText();
-            getRequests(searchTerm, this); // Anropa getRequests med filmtiteln och 'this' GUI-instansen
+            getRequests(searchTerm, this);
         });
 
     }
 
-    public void updateFields(String title, String actors, String release, String plot) {
+    public void updateFields(String title, String actors, String release, String plot, String posterURL) {
         titleField.setText(title);
         actorsField.setText(actors);
         releaseField.setText(release);
         plotField.setText(plot);
+        try {
+        ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
+        posterLabel.setIcon(posterIcon);
+    } catch(
+    IOException e)
+
+    {
+        e.printStackTrace();
     }
+
+}
 
     public static void getRequests(String movie, GUI gui) {
 
@@ -131,8 +145,9 @@ public class GUI extends JFrame {
                 String actors = jsonObject.get("Actors").getAsString();
                 String release = jsonObject.get("Released").getAsString();
                 String plot = jsonObject.get("Plot").getAsString();
+                String posterURL = jsonObject.get("Poster").getAsString();
 
-                SwingUtilities.invokeLater(() -> gui.updateFields(title, actors, release, plot));
+                SwingUtilities.invokeLater(() -> gui.updateFields(title, actors, release, plot, posterURL));
             } else { //404 403 402 etc error koder
                 // Handle the error response
                 System.out.println("Error response code: " + responseCode);
