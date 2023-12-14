@@ -70,22 +70,16 @@ public class GUI extends JFrame {
 
         JPanel right = new JPanel();
         right.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
-        right.setLayout(new GridLayout(2, 0));
+        right.setLayout(new BorderLayout());
         add(right);
 
-        JPanel topRight = new JPanel();
-        right.add(topRight);
-
-        JPanel lowRight = new JPanel();
-        right.add(lowRight);
-
         JLabel rating = new JLabel("RATING:");
-        lowRight.add(rating);
+        right.add(rating, BorderLayout.SOUTH);
         ratingLabel = new JLabel();
-        lowRight.add(ratingLabel);
+        right.add(ratingLabel, BorderLayout.SOUTH);
 
         posterLabel = new JLabel();
-        topRight.add(posterLabel);
+        right.add(posterLabel, BorderLayout.CENTER);
 
         setVisible(true);
 
