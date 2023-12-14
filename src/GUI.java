@@ -13,13 +13,13 @@ import java.net.URL;
 public class GUI extends JFrame {
 
     private static JTextField searchField;
-    private JTextField titleField;
-    private JTextField actorsField;
-    private JTextField releaseField;
-    private JTextField plotField;
+    private JLabel titleField;
+    private JLabel actorsField;
+    private JLabel releaseField;
+    private JLabel plotField;
 
     public GUI() {
-        setSize(700, 600);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(0, 2));
 
@@ -38,24 +38,24 @@ public class GUI extends JFrame {
 
         JLabel title = new JLabel("TITLE:");
         left.add(title);
-        titleField = new JTextField();
+        titleField = new JLabel();
         left.add(titleField);
 
         JLabel actors = new JLabel("ACTORS:");
         left.add(actors);
-        actorsField = new JTextField();
+        actorsField = new JLabel();
         left.add(actorsField);
 
 
         JLabel release = new JLabel("RELEASE DATE:");
         left.add(release);
-        releaseField = new JTextField();
+        releaseField = new JLabel();
         left.add(releaseField);
 
 
         JLabel plot = new JLabel("PLOT:");
         left.add(plot);
-        plotField = new JTextField();
+        plotField = new JLabel();
         left.add(plotField);
 
 
