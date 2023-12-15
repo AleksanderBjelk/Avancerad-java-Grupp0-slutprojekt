@@ -51,24 +51,37 @@ public class GUI extends JFrame {
 
         JLabel title = new JLabel("TITLE:");
         info.add(title);
+        title.setFont(new Font("Serif", Font.BOLD, 40));
+
         titleLabel = new JLabel();
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 40));
         info.add(titleLabel);
+
 
         JLabel actors = new JLabel("ACTORS:");
         info.add(actors);
+        actors.setFont(new Font("Serif", Font.BOLD, 25));
+
         actorsLabel = new JLabel();
+        actorsLabel.setFont(new Font("Serif", Font.BOLD, 20));
         info.add(actorsLabel);
 
 
         JLabel release = new JLabel("RELEASE DATE:");
         info.add(release);
+        release.setFont(new Font("Serif", Font.BOLD, 25));
+
         releaseLabel = new JLabel();
+        releaseLabel.setFont(new Font("Serif", Font.BOLD, 20));
         info.add(releaseLabel);
 
 
         JLabel plot = new JLabel("PLOT:");
         info.add(plot);
+        plot.setFont(new Font("Serif", Font.BOLD, 25));
+
         plotLabel = new JLabel();
+        plotLabel.setFont(new Font("Serif", Font.BOLD, 20));
         info.add(plotLabel);
 
 
@@ -77,9 +90,9 @@ public class GUI extends JFrame {
         right.setLayout(new BorderLayout());
         add(right);
 
-        JLabel rating = new JLabel("RATING:");
-        right.add(rating, BorderLayout.SOUTH);
+
         ratingLabel = new JLabel();
+        ratingLabel.setFont(new Font("Serif", Font.BOLD, 40));
         right.add(ratingLabel, BorderLayout.SOUTH);
 
         posterLabel = new JLabel();

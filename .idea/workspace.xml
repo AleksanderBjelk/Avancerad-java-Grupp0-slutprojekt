@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="fixar så vi får en bild">
+    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="flyttar metod bara för att det ska enklare förstå programmets struktur">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +100,14 @@
       <option name="presentableId" value="LOCAL−00005" />
       <updated>1702562568547</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL−00006" summary="flyttar metod bara för att det ska enklare förstå programmets struktur">
+      <option name="closed" value="true" />
+      <created>1702632703893</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1702632703893</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -108,6 +116,7 @@
     <MESSAGE value="variabel movie" />
     <MESSAGE value="Lägger till texfields, json parsing och att man kan använda &quot;searchField&quot; som sökning" />
     <MESSAGE value="fixar så vi får en bild" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixar så vi får en bild" />
+    <MESSAGE value="flyttar metod bara för att det ska enklare förstå programmets struktur" />
+    <option name="LAST_COMMIT_MESSAGE" value="flyttar metod bara för att det ska enklare förstå programmets struktur" />
   </component>
 </project>
