@@ -19,14 +19,17 @@ public class GUI extends JFrame {
     private JLabel posterLabel;
     private JLabel ratingLabel;
 
+
     public GUI() {
+
+        ImageIcon appIcon = new ImageIcon("src/Loggaimdb.png"); // Ladda din logga från en fil
+        setIconImage(appIcon.getImage());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(0, 2));
         setTitle("EN BÄTTRE IMDB");
 
         Color color = new Color(252,194,3);
-
 
         JPanel left = new JPanel();
         left.setLayout(new BorderLayout());
@@ -189,5 +192,6 @@ public class GUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(GUI::new);
+
     }
 }
