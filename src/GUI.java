@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,6 +43,10 @@ public class GUI extends JFrame {
         searchField = new JTextField();
         leftTopPanel.add(searchField);
         JButton search = new JButton("Search");
+        search.addActionListener(ActionListener -> {
+            String searchTerm = searchField.getText();
+            getRequests(searchTerm, this);
+        });
         leftTopPanel.add(search);
 
         JLabel title = new JLabel("TITLE:");
