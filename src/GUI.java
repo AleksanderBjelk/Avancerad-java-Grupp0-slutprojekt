@@ -1,7 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import javax.swing.*;
-import javax.swing.text.html.HTML;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,21 +23,23 @@ public class GUI extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(0, 2));
+        setTitle("EN BÄTTRE IMDB");
+
+        Color color = new Color(252,194,3);
 
 
         JPanel left = new JPanel();
         left.setLayout(new BorderLayout());
-        left.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         add(left);
 
         JPanel leftTopPanel = new JPanel();
+        leftTopPanel.setBackground(color);
         leftTopPanel.setLayout(new GridLayout(0,2));
-        //leftTopPanel.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         left.add(leftTopPanel, BorderLayout.NORTH);
 
         JPanel info = new JPanel();
+        info.setBackground(color);
         info.setLayout(new GridLayout(4,0));
-        //info.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         left.add(info);
 
         searchField = new JTextField();
@@ -55,7 +56,7 @@ public class GUI extends JFrame {
         title.setFont(new Font("Serif", Font.BOLD, 40));
 
         titleLabel = new JLabel();
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 40));
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 30));
         info.add(titleLabel);
 
 
@@ -87,17 +88,21 @@ public class GUI extends JFrame {
 
 
         JPanel right = new JPanel();
-        right.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+        right.setBackground(color);
         right.setLayout(new BorderLayout());
         add(right);
 
+        JPanel rightBottom = new JPanel();
+        rightBottom.setBackground(color);
+        right.add(rightBottom, BorderLayout.SOUTH);
+
+        posterLabel = new JLabel();
+        right.add(posterLabel);
 
         ratingLabel = new JLabel();
         ratingLabel.setFont(new Font("Serif", Font.BOLD, 40));
-        right.add(ratingLabel, BorderLayout.SOUTH);
+        rightBottom.add(ratingLabel);
 
-        posterLabel = new JLabel();
-        right.add(posterLabel, BorderLayout.CENTER);
 
         setVisible(true);
 
