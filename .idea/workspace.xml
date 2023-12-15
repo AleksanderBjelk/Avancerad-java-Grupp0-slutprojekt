@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="fixar font">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="tar bort try catch">
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +113,14 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1702634626866</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL−00008" summary="tar bort try catch">
+      <option name="closed" value="true" />
+      <created>1702635847547</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1702635847547</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -125,6 +131,7 @@
     <MESSAGE value="fixar så vi får en bild" />
     <MESSAGE value="flyttar metod bara för att det ska enklare förstå programmets struktur" />
     <MESSAGE value="fixar font" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixar font" />
+    <MESSAGE value="tar bort try catch" />
+    <option name="LAST_COMMIT_MESSAGE" value="tar bort try catch" />
   </component>
 </project>

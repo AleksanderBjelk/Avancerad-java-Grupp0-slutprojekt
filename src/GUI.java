@@ -2,7 +2,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -178,7 +177,6 @@ public class GUI extends JFrame {
         releaseLabel.setText(release);
         plotLabel.setText(plot);
         ratingLabel.setText(rating);
-
             ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
             posterLabel.setIcon(posterIcon);
     }
