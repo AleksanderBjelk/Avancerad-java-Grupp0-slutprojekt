@@ -30,12 +30,13 @@ public class GUI extends JFrame {
         add(left);
 
         JPanel leftTopPanel = new JPanel();
-        leftTopPanel.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+        leftTopPanel.setLayout(new GridLayout(0,2));
+        //leftTopPanel.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         left.add(leftTopPanel, BorderLayout.NORTH);
 
         JPanel info = new JPanel();
         info.setLayout(new GridLayout(4,0));
-        info.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+        //info.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         left.add(info);
 
         searchField = new JTextField();
