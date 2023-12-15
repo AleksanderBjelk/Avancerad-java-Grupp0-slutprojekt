@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -150,8 +151,9 @@ public class GUI extends JFrame {
                 String plot = jsonObject.get("Plot").getAsString();
                 String posterURL = jsonObject.get("Poster").getAsString();
                 String rating = jsonObject.get("imdbRating").getAsString();
+                gui.updateFields(title, actors, release, plot, posterURL, rating);
 
-                SwingUtilities.invokeLater(() -> gui.updateFields(title, actors, release, plot, posterURL, rating));
+
             } else { //404 403 402 etc error koder
                 // Handle the error response
                 System.out.println("Error response code: " + responseCode);
@@ -159,27 +161,26 @@ public class GUI extends JFrame {
 
             // Close the connection
             connection.disconnect();
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateFields(String title, String actors, String release, String plot, String posterURL, String rating) {
+    public void updateFields(String title, String actors, String release, String plot, String posterURL, String rating) throws MalformedURLException {
         titleLabel.setText(title);
         actorsLabel.setText(actors);
         releaseLabel.setText(release);
         plotLabel.setText(plot);
         ratingLabel.setText(rating);
-        try {
+
             ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
             posterLabel.setIcon(posterIcon);
-        } catch(
-                IOException e)
-
-        {
-            e.printStackTrace();
-        }
-
     }
 
     public static void main(String[] args) {

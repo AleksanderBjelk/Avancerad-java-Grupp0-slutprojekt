@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="flyttar metod bara för att det ska enklare förstå programmets struktur">
+    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="fixar font">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
@@ -107,7 +107,14 @@
       <option name="presentableId" value="LOCAL−00006" />
       <updated>1702632703893</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL−00007" summary="fixar font">
+      <option name="closed" value="true" />
+      <created>1702634626866</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1702634626866</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -117,6 +124,7 @@
     <MESSAGE value="Lägger till texfields, json parsing och att man kan använda &quot;searchField&quot; som sökning" />
     <MESSAGE value="fixar så vi får en bild" />
     <MESSAGE value="flyttar metod bara för att det ska enklare förstå programmets struktur" />
-    <option name="LAST_COMMIT_MESSAGE" value="flyttar metod bara för att det ska enklare förstå programmets struktur" />
+    <MESSAGE value="fixar font" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixar font" />
   </component>
 </project>
