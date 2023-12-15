@@ -1,6 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import javax.swing.*;
+import javax.swing.text.html.HTML;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -172,10 +173,10 @@ public class GUI extends JFrame {
     }
 
     public void updateFields(String title, String actors, String release, String plot, String posterURL, String rating) throws MalformedURLException {
-        titleLabel.setText(title);
-        actorsLabel.setText(actors);
-        releaseLabel.setText(release);
-        plotLabel.setText(plot);
+        titleLabel.setText("<HTML>"+title+"</HTML>");
+        actorsLabel.setText("<HTML>"+actors+"</HTML>");
+        releaseLabel.setText("<HTML>"+release+"</HTML>");
+        plotLabel.setText("<HTML>"+plot+"</HTML>");
         ratingLabel.setText(rating);
             ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
             posterLabel.setIcon(posterIcon);

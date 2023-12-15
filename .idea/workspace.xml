@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="tar bort try catch">
+    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="rensar">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +121,14 @@
       <option name="presentableId" value="LOCAL−00008" />
       <updated>1702635847547</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL−00009" summary="rensar">
+      <option name="closed" value="true" />
+      <created>1702636328046</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1702636328046</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -132,6 +140,7 @@
     <MESSAGE value="flyttar metod bara för att det ska enklare förstå programmets struktur" />
     <MESSAGE value="fixar font" />
     <MESSAGE value="tar bort try catch" />
-    <option name="LAST_COMMIT_MESSAGE" value="tar bort try catch" />
+    <MESSAGE value="rensar" />
+    <option name="LAST_COMMIT_MESSAGE" value="rensar" />
   </component>
 </project>
