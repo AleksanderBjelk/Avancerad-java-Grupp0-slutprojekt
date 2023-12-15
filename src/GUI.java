@@ -8,15 +8,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class GUI extends JFrame {
 
+public class GUI extends JFrame {
     private static JTextField searchField;
     private JLabel titleLabel;
     private JLabel actorsLabel;
     private JLabel releaseLabel;
     private JLabel plotLabel;
     private JLabel posterLabel;
-
     private JLabel ratingLabel;
 
     public GUI() {
@@ -26,44 +25,45 @@ public class GUI extends JFrame {
 
 
         JPanel left = new JPanel();
-        left.setLayout(new GridLayout(5, 0));
+        left.setLayout(new BorderLayout());
         left.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         add(left);
 
         JPanel leftTopPanel = new JPanel();
-        leftTopPanel.setLayout(new BorderLayout());
         leftTopPanel.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
-        left.add(leftTopPanel);
+        left.add(leftTopPanel, BorderLayout.NORTH);
+
+        JPanel info = new JPanel();
+        info.setLayout(new GridLayout(4,0));
+        info.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+        left.add(info);
 
         searchField = new JTextField();
-        leftTopPanel.add(searchField, BorderLayout.NORTH);
+        leftTopPanel.add(searchField);
         JButton search = new JButton("Search");
-        leftTopPanel.add(search, BorderLayout.CENTER);
-
-        JLabel space = new JLabel();
-        left.add(space);
+        leftTopPanel.add(search);
 
         JLabel title = new JLabel("TITLE:");
-        left.add(title);
+        info.add(title);
         titleLabel = new JLabel();
-        left.add(titleLabel);
+        info.add(titleLabel);
 
         JLabel actors = new JLabel("ACTORS:");
-        left.add(actors);
+        info.add(actors);
         actorsLabel = new JLabel();
-        left.add(actorsLabel);
+        info.add(actorsLabel);
 
 
         JLabel release = new JLabel("RELEASE DATE:");
-        left.add(release);
+        info.add(release);
         releaseLabel = new JLabel();
-        left.add(releaseLabel);
+        info.add(releaseLabel);
 
 
         JLabel plot = new JLabel("PLOT:");
-        left.add(plot);
+        info.add(plot);
         plotLabel = new JLabel();
-        left.add(plotLabel);
+        info.add(plotLabel);
 
 
         JPanel right = new JPanel();
