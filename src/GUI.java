@@ -89,23 +89,7 @@ public class GUI extends JFrame {
 
     }
 
-    public void updateFields(String title, String actors, String release, String plot, String posterURL, String rating) {
-        titleLabel.setText(title);
-        actorsLabel.setText(actors);
-        releaseLabel.setText(release);
-        plotLabel.setText(plot);
-        ratingLabel.setText(rating);
-        try {
-        ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
-        posterLabel.setIcon(posterIcon);
-    } catch(
-    IOException e)
 
-    {
-        e.printStackTrace();
-    }
-
-}
 
     public static void getRequests(String movie, GUI gui) {
 
@@ -160,6 +144,24 @@ public class GUI extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateFields(String title, String actors, String release, String plot, String posterURL, String rating) {
+        titleLabel.setText(title);
+        actorsLabel.setText(actors);
+        releaseLabel.setText(release);
+        plotLabel.setText(plot);
+        ratingLabel.setText(rating);
+        try {
+            ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
+            posterLabel.setIcon(posterIcon);
+        } catch(
+                IOException e)
+
+        {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {
