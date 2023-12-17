@@ -29,30 +29,40 @@ public class GUI extends JFrame {
         setLayout(new GridLayout(0, 2));
         setTitle("EN BÄTTRE IMDB");
 
-        Color color = new Color(252,194,3);
+        Color bColor = new Color(252,194,3);
 
         JPanel left = new JPanel();
         left.setLayout(new BorderLayout());
         add(left);
 
         JPanel leftTopPanel = new JPanel();
-        leftTopPanel.setBackground(color);
-        leftTopPanel.setLayout(new GridLayout(0,2));
+        leftTopPanel.setBackground(bColor);
+        leftTopPanel.setLayout(new GridLayout(0,3));
         left.add(leftTopPanel, BorderLayout.NORTH);
 
+
         JPanel info = new JPanel();
-        info.setBackground(color);
+        info.setBackground(bColor);
         info.setLayout(new GridLayout(4,0));
         left.add(info);
 
+
         searchField = new JTextField();
         leftTopPanel.add(searchField);
+
         JButton search = new JButton("Search");
         search.addActionListener(ActionListener -> {
             String searchTerm = searchField.getText();
             getRequests(searchTerm, this);
         });
         leftTopPanel.add(search);
+
+        JButton randomButton = new JButton("Random movie");
+        randomButton.addActionListener(e -> {
+            //fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
+        });
+        leftTopPanel.add(randomButton);
+
 
         JLabel title = new JLabel("TITLE:");
         info.add(title);
@@ -91,19 +101,23 @@ public class GUI extends JFrame {
 
 
         JPanel right = new JPanel();
-        right.setBackground(color);
-        right.setLayout(new BorderLayout());
+        right.setBackground(bColor);
+        right.setLayout(new FlowLayout(FlowLayout.CENTER));
         add(right);
 
         JPanel rightBottom = new JPanel();
-        rightBottom.setBackground(color);
+        rightBottom.setBackground(bColor);
         right.add(rightBottom, BorderLayout.SOUTH);
 
         posterLabel = new JLabel();
-        right.add(posterLabel);
+        right.add(new JLabel()); //tom Jlabel
+        right.add(posterLabel); //Centrerad posterLabel
+        right.add(new JLabel()); //tom JLabel efter
+        //posterLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
         ratingLabel = new JLabel();
         ratingLabel.setFont(new Font("Serif", Font.BOLD, 40));
+        //ratingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         rightBottom.add(ratingLabel);
 
 
@@ -185,7 +199,7 @@ public class GUI extends JFrame {
         actorsLabel.setText("<HTML>"+actors+"</HTML>");
         releaseLabel.setText("<HTML>"+release+"</HTML>");
         plotLabel.setText("<HTML>"+plot+"</HTML>");
-        ratingLabel.setText(rating);
+        ratingLabel.setText("User ratings: " + rating);
             ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
             posterLabel.setIcon(posterIcon);
     }
