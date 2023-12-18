@@ -50,6 +50,10 @@ public class GUI extends JFrame {
 
         searchField = new JTextField();
         searchField.setBackground(tColor);
+        searchField.addActionListener(e -> {
+            String searchTerm = searchField.getText();
+            getRequests(searchTerm, this);
+        });
         leftTopPanel.add(searchField);
 
         JButton search = new JButton("Search");
@@ -110,7 +114,7 @@ public class GUI extends JFrame {
 
         plotLabel = new JLabel();
         plotLabel.setForeground(tColor);
-        plotLabel.setFont(new Font("Serif", Font.BOLD, 20));
+        plotLabel.setFont(new Font("Serif", Font.BOLD, 15));
         info.add(plotLabel);
 
 
@@ -119,9 +123,6 @@ public class GUI extends JFrame {
         right.setLayout(new FlowLayout(FlowLayout.CENTER));
         add(right);
 
-        JPanel rightBottom = new JPanel();
-        rightBottom.setBackground(bColor);
-        right.add(rightBottom, BorderLayout.SOUTH);
 
         posterLabel = new JLabel();
         posterLabel.setForeground(tColor);
@@ -134,16 +135,10 @@ public class GUI extends JFrame {
         ratingLabel.setForeground(tColor);
         ratingLabel.setFont(new Font("Serif", Font.BOLD, 40));
         //ratingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-        rightBottom.add(ratingLabel);
+        right.add(ratingLabel);
 
 
         setVisible(true);
-
-        searchField.addActionListener(e -> {
-            String searchTerm = searchField.getText();
-            getRequests(searchTerm, this);
-        });
-
     }
 
 
