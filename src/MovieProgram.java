@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class GUI extends JFrame {
+public class MovieProgram extends JFrame {
     private static JTextField searchField;
     private JLabel titleLabel;
     private JLabel actorsLabel;
@@ -21,7 +21,7 @@ public class GUI extends JFrame {
     private JLabel genreLabel;
 
 
-    public GUI() {
+    public MovieProgram() {
 
         ImageIcon appIcon = new ImageIcon("src/Loggaimdb.png"); // Ladda din logga från en fil
         setIconImage(appIcon.getImage());
@@ -57,18 +57,26 @@ public class GUI extends JFrame {
         });
         leftTopPanel.add(searchField);
 
-        JButton search = new JButton("Search");
-        search.setBackground(tColor);
-        search.setForeground(bColor);
-        search.addActionListener(ActionListener -> {
+        JButton searchButton = new JButton("Search");
+        searchButton.setBackground(tColor);
+        searchButton.setForeground(bColor);
+        searchButton.setOpaque(true);
+        searchButton.setBorderPainted(true);
+        //searchButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+        searchButton.addActionListener(ActionListener -> {
             String searchTerm = searchField.getText();
             getRequests(searchTerm, this);
         });
-        leftTopPanel.add(search);
+        leftTopPanel.add(searchButton);
 
         JButton randomButton = new JButton("Random movie");
         randomButton.setBackground(tColor);
         randomButton.setForeground(bColor);
+        randomButton.setOpaque(true);
+        randomButton.setBorderPainted(true);
+        //randomButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        randomButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
         randomButton.addActionListener(e -> {
             //fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
         });
@@ -151,7 +159,7 @@ public class GUI extends JFrame {
 
 
 
-    public static void getRequests(String movie, GUI gui) {
+    public static void getRequests(String movie, MovieProgram gui) {
 
         try {
 
@@ -226,7 +234,7 @@ public class GUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(GUI::new);
+        SwingUtilities.invokeLater(MovieProgram::new);
 
     }
 }
