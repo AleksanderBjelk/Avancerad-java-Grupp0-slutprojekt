@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class MovieProgram extends JFrame {
@@ -51,6 +53,7 @@ public class MovieProgram extends JFrame {
 
         searchField = new JTextField();
         searchField.setBackground(tColor);
+        searchField.setFont(new Font("Serif", Font.BOLD, 18));
         searchField.addActionListener(e -> {
             String searchTerm = searchField.getText();
             getRequests(searchTerm, this);
@@ -64,6 +67,7 @@ public class MovieProgram extends JFrame {
         searchButton.setBorderPainted(true);
         //searchButton.setBorder(BorderFactory.createRaisedBevelBorder());
         searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+        searchButton.setFont(new Font("Serif", Font.BOLD, 18));
         searchButton.addActionListener(ActionListener -> {
             String searchTerm = searchField.getText();
             getRequests(searchTerm, this);
@@ -77,8 +81,11 @@ public class MovieProgram extends JFrame {
         randomButton.setBorderPainted(true);
         //randomButton.setBorder(BorderFactory.createRaisedBevelBorder());
         randomButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+        randomButton.setFont(new Font("Serif", Font.BOLD, 18));
         randomButton.addActionListener(e -> {
-            //fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
+           String str = fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
+            getRequests(str, this);
+
         });
         leftTopPanel.add(randomButton);
 
@@ -117,8 +124,9 @@ public class MovieProgram extends JFrame {
 
         JLabel genre = new JLabel("GENRE: ");
         genre.setForeground(tColor);
-        info.add(genre);
         genre.setFont(new Font("Serif", Font.BOLD, 25));
+        info.add(genre);
+
 
         genreLabel = new JLabel();
         genreLabel.setForeground(tColor);
@@ -157,6 +165,52 @@ public class MovieProgram extends JFrame {
         setVisible(true);
     }
 
+    private String fetchRandomMovieFromURL(String topUrl) {
+
+        ArrayList<String>Top250 = new ArrayList<>();
+
+        try {
+
+            // Create the URL for the HTTP GET request
+            URL url = new URL(topUrl);
+
+
+            // Open a connection to the URL
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Set the request method to GET
+            connection.setRequestMethod("GET"); //POST , PATCH , DELETE
+
+            // Get the response code t.ex 400, 404, 200 är ok
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) { // ok är bra
+                // Read the response from the InputStream
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+
+
+                while ((line = reader.readLine()) != null) {
+                    Top250.add(line.substring(32,line.length()-7)+"\n");
+                }
+                reader.close();
+
+                return Top250.get(new Random().nextInt(250));
+
+
+            } else { //404 403 402 etc error koder
+                // Handle the error response
+                System.out.println("Error response code: " + responseCode);
+            }
+
+            // Close the connection
+            connection.disconnect();
+        } catch (Exception e){
+            System.out.println("Det gick inte" + e);
+
+        }
+        return "";
+    }
 
 
     public static void getRequests(String movie, MovieProgram gui) {
@@ -186,10 +240,6 @@ public class MovieProgram extends JFrame {
                     response.append(line);
                 }
                 reader.close();
-
-                // Handle the response data
-                System.out.println("OMDb API");
-                System.out.println(response);
 
                 Gson gson = new Gson();
                 JsonObject jsonObject = gson.fromJson(response.toString(), JsonObject.class);
