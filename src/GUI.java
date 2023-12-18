@@ -52,6 +52,8 @@ public class GUI extends JFrame {
         leftTopPanel.add(searchField);
 
         JButton search = new JButton("Search");
+        search.setBackground(tColor);
+        search.setForeground(bColor);
         search.addActionListener(ActionListener -> {
             String searchTerm = searchField.getText();
             getRequests(searchTerm, this);
@@ -59,6 +61,8 @@ public class GUI extends JFrame {
         leftTopPanel.add(search);
 
         JButton randomButton = new JButton("Random movie");
+        randomButton.setBackground(tColor);
+        randomButton.setForeground(bColor);
         randomButton.addActionListener(e -> {
             //fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
         });
