@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="Fixar namn och borderline på knappar">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="random button funkar, plus lite städ">
       <change beforePath="$PROJECT_DIR$/src/MovieProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieProgram.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +164,14 @@
       <option name="presentableId" value="LOCAL−00014" />
       <updated>1702901680505</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL−00015" summary="random button funkar, plus lite städ">
+      <option name="closed" value="true" />
+      <created>1702905926118</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1702905926118</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -183,6 +189,7 @@
     <MESSAGE value="ändrar färg på searchField" />
     <MESSAGE value="flyttar ner poster" />
     <MESSAGE value="Fixar namn och borderline på knappar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixar namn och borderline på knappar" />
+    <MESSAGE value="random button funkar, plus lite städ" />
+    <option name="LAST_COMMIT_MESSAGE" value="random button funkar, plus lite städ" />
   </component>
 </project>

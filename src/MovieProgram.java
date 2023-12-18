@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -32,8 +33,10 @@ public class MovieProgram extends JFrame {
         setLayout(new GridLayout(0, 2));
         setTitle("EN BÄTTRE IMDB");
 
+
         Color bColor = new Color(0, 0, 0);
         Color tColor = new Color(248, 199, 3);
+
 
         JPanel left = new JPanel();
         left.setLayout(new BorderLayout());
@@ -41,13 +44,13 @@ public class MovieProgram extends JFrame {
 
         JPanel leftTopPanel = new JPanel();
         leftTopPanel.setBackground(bColor);
-        leftTopPanel.setLayout(new GridLayout(0,3));
+        leftTopPanel.setLayout(new GridLayout(0, 3));
         left.add(leftTopPanel, BorderLayout.NORTH);
 
 
         JPanel info = new JPanel();
         info.setBackground(bColor);
-        info.setLayout(new GridLayout(4,0));
+        info.setLayout(new GridLayout(4, 0));
         left.add(info);
 
 
@@ -83,7 +86,7 @@ public class MovieProgram extends JFrame {
         randomButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
         randomButton.setFont(new Font("Serif", Font.BOLD, 18));
         randomButton.addActionListener(e -> {
-           String str = fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
+            String str = fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
             getRequests(str, this);
 
         });
@@ -122,11 +125,11 @@ public class MovieProgram extends JFrame {
         releaseLabel.setFont(new Font("Serif", Font.BOLD, 20));
         info.add(releaseLabel);
 
+
         JLabel genre = new JLabel("GENRE: ");
         genre.setForeground(tColor);
         genre.setFont(new Font("Serif", Font.BOLD, 25));
         info.add(genre);
-
 
         genreLabel = new JLabel();
         genreLabel.setForeground(tColor);
@@ -167,7 +170,7 @@ public class MovieProgram extends JFrame {
 
     private String fetchRandomMovieFromURL(String topUrl) {
 
-        ArrayList<String>Top250 = new ArrayList<>();
+        ArrayList<String> Top250 = new ArrayList<>();
 
         try {
 
@@ -191,7 +194,7 @@ public class MovieProgram extends JFrame {
 
 
                 while ((line = reader.readLine()) != null) {
-                    Top250.add(line.substring(32,line.length()-7)+"\n");
+                    Top250.add(line.substring(32, line.length() - 7) + "\n");
                 }
                 reader.close();
 
@@ -205,7 +208,7 @@ public class MovieProgram extends JFrame {
 
             // Close the connection
             connection.disconnect();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Det gick inte" + e);
 
         }
@@ -273,14 +276,14 @@ public class MovieProgram extends JFrame {
     }
 
     public void updateFields(String title, String actors, String release, String genre, String plot, String posterURL, String rating) throws MalformedURLException {
-        titleLabel.setText("<HTML>"+title+"</HTML>");
-        actorsLabel.setText("<HTML>"+actors+"</HTML>");
-        releaseLabel.setText("<HTML>"+release+"</HTML>");
-        genreLabel.setText("<HTML>"+genre+"</HTML>");
-        plotLabel.setText("<HTML>"+plot+"</HTML>");
+        titleLabel.setText("<HTML>" + title + "</HTML>");
+        actorsLabel.setText("<HTML>" + actors + "</HTML>");
+        releaseLabel.setText("<HTML>" + release + "</HTML>");
+        genreLabel.setText("<HTML>" + genre + "</HTML>");
+        plotLabel.setText("<HTML>" + plot + "</HTML>");
         ratingLabel.setText("User ratings: " + rating);
-            ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
-            posterLabel.setIcon(posterIcon);
+        ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
+        posterLabel.setIcon(posterIcon);
     }
 
     public static void main(String[] args) {
