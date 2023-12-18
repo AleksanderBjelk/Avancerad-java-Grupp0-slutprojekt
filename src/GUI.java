@@ -24,7 +24,7 @@ public class GUI extends JFrame {
 
         ImageIcon appIcon = new ImageIcon("src/Loggaimdb.png"); // Ladda din logga från en fil
         setIconImage(appIcon.getImage());
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setSize(1000,680 );
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(0, 2));
         setTitle("EN BÄTTRE IMDB");
