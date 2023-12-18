@@ -123,6 +123,7 @@ public class GUI extends JFrame {
         right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
         add(right);
 
+        right.add(Box.createVerticalGlue());
 
         posterLabel = new JLabel();
         posterLabel.setForeground(tColor);
