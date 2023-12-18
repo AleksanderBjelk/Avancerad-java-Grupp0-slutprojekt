@@ -18,6 +18,7 @@ public class GUI extends JFrame {
     private JLabel plotLabel;
     private JLabel posterLabel;
     private JLabel ratingLabel;
+    private JLabel genreLabel;
 
 
     public GUI() {
@@ -106,16 +107,15 @@ public class GUI extends JFrame {
         releaseLabel.setFont(new Font("Serif", Font.BOLD, 20));
         info.add(releaseLabel);
 
+        JLabel genre = new JLabel("GENRE: ");
+        genre.setForeground(tColor);
+        info.add(genre);
+        genre.setFont(new Font("Serif", Font.BOLD, 25));
 
-        JLabel plot = new JLabel("PLOT:");
-        plot.setForeground(tColor);
-        info.add(plot);
-        plot.setFont(new Font("Serif", Font.BOLD, 25));
-
-        plotLabel = new JLabel();
-        plotLabel.setForeground(tColor);
-        plotLabel.setFont(new Font("Serif", Font.BOLD, 15));
-        info.add(plotLabel);
+        genreLabel = new JLabel();
+        genreLabel.setForeground(tColor);
+        genreLabel.setFont(new Font("Serif", Font.BOLD, 20));
+        info.add(genreLabel);
 
 
         JPanel right = new JPanel();
@@ -136,6 +136,13 @@ public class GUI extends JFrame {
         //ratingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         right.add(ratingLabel);
 
+
+        plotLabel = new JLabel();
+        plotLabel.setForeground(tColor);
+        plotLabel.setAlignmentX(0.5F);
+        plotLabel.setAlignmentY(0.8F);
+        plotLabel.setFont(new Font("Serif", Font.BOLD, 30));
+        right.add(plotLabel);
 
         setVisible(true);
     }
@@ -180,10 +187,11 @@ public class GUI extends JFrame {
                 String title = jsonObject.get("Title").getAsString();
                 String actors = jsonObject.get("Actors").getAsString();
                 String release = jsonObject.get("Released").getAsString();
+                String genre = jsonObject.get("Genre").getAsString();
                 String plot = jsonObject.get("Plot").getAsString();
                 String posterURL = jsonObject.get("Poster").getAsString();
                 String rating = jsonObject.get("imdbRating").getAsString();
-                gui.updateFields(title, actors, release, plot, posterURL, rating);
+                gui.updateFields(title, actors, release, genre, plot, posterURL, rating);
 
 
             } else { //404 403 402 etc error koder
@@ -204,10 +212,11 @@ public class GUI extends JFrame {
         }
     }
 
-    public void updateFields(String title, String actors, String release, String plot, String posterURL, String rating) throws MalformedURLException {
+    public void updateFields(String title, String actors, String release, String genre, String plot, String posterURL, String rating) throws MalformedURLException {
         titleLabel.setText("<HTML>"+title+"</HTML>");
         actorsLabel.setText("<HTML>"+actors+"</HTML>");
         releaseLabel.setText("<HTML>"+release+"</HTML>");
+        genreLabel.setText("<HTML>"+genre+"</HTML>");
         plotLabel.setText("<HTML>"+plot+"</HTML>");
         ratingLabel.setText("User ratings: " + rating);
             ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
