@@ -29,7 +29,8 @@ public class GUI extends JFrame {
         setLayout(new GridLayout(0, 2));
         setTitle("EN BÄTTRE IMDB");
 
-        Color bColor = new Color(252,194,3);
+        Color bColor = new Color(0, 0, 0);
+        Color tColor = new Color(248, 199, 3);
 
         JPanel left = new JPanel();
         left.setLayout(new BorderLayout());
@@ -65,37 +66,45 @@ public class GUI extends JFrame {
 
 
         JLabel title = new JLabel("TITLE:");
+        title.setForeground(tColor);
         info.add(title);
         title.setFont(new Font("Serif", Font.BOLD, 40));
 
         titleLabel = new JLabel();
+        titleLabel.setForeground(tColor);
         titleLabel.setFont(new Font("Serif", Font.BOLD, 30));
         info.add(titleLabel);
 
 
         JLabel actors = new JLabel("ACTORS:");
+        actors.setForeground(tColor);
         info.add(actors);
         actors.setFont(new Font("Serif", Font.BOLD, 25));
 
         actorsLabel = new JLabel();
+        actorsLabel.setForeground(tColor);
         actorsLabel.setFont(new Font("Serif", Font.BOLD, 20));
         info.add(actorsLabel);
 
 
         JLabel release = new JLabel("RELEASE DATE:");
+        release.setForeground(tColor);
         info.add(release);
         release.setFont(new Font("Serif", Font.BOLD, 25));
 
         releaseLabel = new JLabel();
+        releaseLabel.setForeground(tColor);
         releaseLabel.setFont(new Font("Serif", Font.BOLD, 20));
         info.add(releaseLabel);
 
 
         JLabel plot = new JLabel("PLOT:");
+        plot.setForeground(tColor);
         info.add(plot);
         plot.setFont(new Font("Serif", Font.BOLD, 25));
 
         plotLabel = new JLabel();
+        plotLabel.setForeground(tColor);
         plotLabel.setFont(new Font("Serif", Font.BOLD, 20));
         info.add(plotLabel);
 
@@ -110,12 +119,14 @@ public class GUI extends JFrame {
         right.add(rightBottom, BorderLayout.SOUTH);
 
         posterLabel = new JLabel();
+        posterLabel.setForeground(tColor);
         right.add(new JLabel()); //tom Jlabel
         right.add(posterLabel); //Centrerad posterLabel
         right.add(new JLabel()); //tom JLabel efter
         //posterLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
         ratingLabel = new JLabel();
+        ratingLabel.setForeground(tColor);
         ratingLabel.setFont(new Font("Serif", Font.BOLD, 40));
         //ratingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         rightBottom.add(ratingLabel);
