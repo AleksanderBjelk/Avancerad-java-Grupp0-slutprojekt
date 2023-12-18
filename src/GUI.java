@@ -133,16 +133,17 @@ public class GUI extends JFrame {
         ratingLabel.setForeground(tColor);
         ratingLabel.setAlignmentX(0.5F);
         ratingLabel.setFont(new Font("Serif", Font.BOLD, 40));
-        //ratingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         right.add(ratingLabel);
 
+        right.add(Box.createVerticalGlue());
 
         plotLabel = new JLabel();
         plotLabel.setForeground(tColor);
         plotLabel.setAlignmentX(0.5F);
-        plotLabel.setAlignmentY(0.8F);
-        plotLabel.setFont(new Font("Serif", Font.BOLD, 30));
+        plotLabel.setFont(new Font("Serif", Font.BOLD, 20));
         right.add(plotLabel);
+
+        right.add(Box.createVerticalGlue());
 
         setVisible(true);
     }
