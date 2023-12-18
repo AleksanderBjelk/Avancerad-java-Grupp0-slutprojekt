@@ -1,19 +1,10 @@
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Random;
 
+public class GUI extends JFrame {
 
-public class MovieProgram extends JFrame {
     private static JTextField searchField;
     private JLabel titleLabel;
     private JLabel actorsLabel;
@@ -23,9 +14,7 @@ public class MovieProgram extends JFrame {
     private JLabel ratingLabel;
     private JLabel genreLabel;
 
-
-    public MovieProgram() {
-
+    public GUI() {
         ImageIcon appIcon = new ImageIcon("src/Loggaimdb.png"); // Ladda din logga från en fil
         setIconImage(appIcon.getImage());
         setExtendedState(MAXIMIZED_BOTH);
@@ -59,7 +48,7 @@ public class MovieProgram extends JFrame {
         searchField.setFont(new Font("Serif", Font.BOLD, 18));
         searchField.addActionListener(e -> {
             String searchTerm = searchField.getText();
-            getRequests(searchTerm, this);
+            DataManager.getRequests(searchTerm, this);
         });
         leftTopPanel.add(searchField);
 
@@ -73,7 +62,7 @@ public class MovieProgram extends JFrame {
         searchButton.setFont(new Font("Serif", Font.BOLD, 18));
         searchButton.addActionListener(ActionListener -> {
             String searchTerm = searchField.getText();
-            getRequests(searchTerm, this);
+            DataManager.getRequests(searchTerm, this);
         });
         leftTopPanel.add(searchButton);
 
@@ -86,8 +75,8 @@ public class MovieProgram extends JFrame {
         randomButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
         randomButton.setFont(new Font("Serif", Font.BOLD, 18));
         randomButton.addActionListener(e -> {
-            String str = fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
-            getRequests(str, this);
+            String str = DataManager.fetchRandomMovieFromURL("https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt");
+            DataManager.getRequests(str, this);
 
         });
         leftTopPanel.add(randomButton);
@@ -168,113 +157,6 @@ public class MovieProgram extends JFrame {
         setVisible(true);
     }
 
-    private String fetchRandomMovieFromURL(String topUrl) {
-
-        ArrayList<String> Top250 = new ArrayList<>();
-
-        try {
-
-            // Create the URL for the HTTP GET request
-            URL url = new URL(topUrl);
-
-
-            // Open a connection to the URL
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // Set the request method to GET
-            connection.setRequestMethod("GET"); //POST , PATCH , DELETE
-
-            // Get the response code t.ex 400, 404, 200 är ok
-            int responseCode = connection.getResponseCode();
-
-            if (responseCode == HttpURLConnection.HTTP_OK) { // ok är bra
-                // Read the response from the InputStream
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-
-
-                while ((line = reader.readLine()) != null) {
-                    Top250.add(line.substring(32, line.length() - 7) + "\n");
-                }
-                reader.close();
-
-                return Top250.get(new Random().nextInt(250));
-
-
-            } else { //404 403 402 etc error koder
-                // Handle the error response
-                System.out.println("Error response code: " + responseCode);
-            }
-
-            // Close the connection
-            connection.disconnect();
-        } catch (Exception e) {
-            System.out.println("Det gick inte" + e);
-
-        }
-        return "";
-    }
-
-
-    public static void getRequests(String movie, MovieProgram gui) {
-
-        try {
-
-            // Create the URL for the HTTP GET request
-            URL url = new URL("https://www.omdbapi.com/?apikey=eee5649f&t=" + movie);
-
-
-            // Open a connection to the URL
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // Set the request method to GET
-            connection.setRequestMethod("GET"); //POST , PATCH , DELETE
-
-            // Get the response code t.ex 400, 404, 200 är ok
-            int responseCode = connection.getResponseCode();
-
-            if (responseCode == HttpURLConnection.HTTP_OK) { // ok är bra
-                // Read the response from the InputStream
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                StringBuilder response = new StringBuilder();
-
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-                reader.close();
-
-                Gson gson = new Gson();
-                JsonObject jsonObject = gson.fromJson(response.toString(), JsonObject.class);
-
-                String title = jsonObject.get("Title").getAsString();
-                String actors = jsonObject.get("Actors").getAsString();
-                String release = jsonObject.get("Released").getAsString();
-                String genre = jsonObject.get("Genre").getAsString();
-                String plot = jsonObject.get("Plot").getAsString();
-                String posterURL = jsonObject.get("Poster").getAsString();
-                String rating = jsonObject.get("imdbRating").getAsString();
-                gui.updateFields(title, actors, release, genre, plot, posterURL, rating);
-
-
-            } else { //404 403 402 etc error koder
-                // Handle the error response
-                System.out.println("Error response code: " + responseCode);
-            }
-
-            // Close the connection
-            connection.disconnect();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void updateFields(String title, String actors, String release, String genre, String plot, String posterURL, String rating) throws MalformedURLException {
         titleLabel.setText("<HTML>" + title + "</HTML>");
         actorsLabel.setText("<HTML>" + actors + "</HTML>");
@@ -284,10 +166,5 @@ public class MovieProgram extends JFrame {
         ratingLabel.setText("User ratings: " + rating);
         ImageIcon posterIcon = new ImageIcon(new URL(posterURL));
         posterLabel.setIcon(posterIcon);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(MovieProgram::new);
-
     }
 }

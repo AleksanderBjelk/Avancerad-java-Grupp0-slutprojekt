@@ -1,5 +1,8 @@
+import javax.swing.SwingUtilities;
 public class Main {
     public static void main(String[] args) {
-        new MovieProgram();
+        SwingUtilities.invokeLater(() -> { //används för att den ska köras på rätt kod och gör GUI men responsiv
+            new GUI();
+        });
     }
 }
