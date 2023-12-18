@@ -24,7 +24,7 @@ public class GUI extends JFrame {
 
         ImageIcon appIcon = new ImageIcon("src/Loggaimdb.png"); // Ladda din logga från en fil
         setIconImage(appIcon.getImage());
-        setSize(1000,680 );
+        setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridLayout(0, 2));
         setTitle("EN BÄTTRE IMDB");
@@ -120,19 +120,18 @@ public class GUI extends JFrame {
 
         JPanel right = new JPanel();
         right.setBackground(bColor);
-        right.setLayout(new FlowLayout(FlowLayout.CENTER));
+        right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
         add(right);
 
 
         posterLabel = new JLabel();
         posterLabel.setForeground(tColor);
-        right.add(new JLabel()); //tom Jlabel
         right.add(posterLabel); //Centrerad posterLabel
-        right.add(new JLabel()); //tom JLabel efter
-        //posterLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+        posterLabel.setAlignmentX(0.5F);
 
         ratingLabel = new JLabel();
         ratingLabel.setForeground(tColor);
+        ratingLabel.setAlignmentX(0.5F);
         ratingLabel.setFont(new Font("Serif", Font.BOLD, 40));
         //ratingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         right.add(ratingLabel);
