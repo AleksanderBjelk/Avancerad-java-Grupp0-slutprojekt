@@ -49,6 +49,7 @@ public class GUI extends JFrame {
 
 
         searchField = new JTextField();
+        searchField.setBackground(tColor);
         leftTopPanel.add(searchField);
 
         JButton search = new JButton("Search");
