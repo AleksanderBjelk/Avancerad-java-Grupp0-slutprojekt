@@ -14,6 +14,7 @@ import java.util.Random;
 public class DataManager {
     public static String fetchRandomMovieFromURL(String topUrl) {
 
+        // ArrayList där vi sparar Strings med filmnamnet från IMDBs topp 250 lista
         ArrayList<String> Top250 = new ArrayList<>();
 
         try {

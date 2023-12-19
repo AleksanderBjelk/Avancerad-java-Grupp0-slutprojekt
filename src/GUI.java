@@ -22,11 +22,11 @@ public class GUI extends JFrame {
         setLayout(new GridLayout(0, 2));
         setTitle("EN BÄTTRE IMDB");
 
-
+        // Färger till bakgrund (bColor) och text/knappar (tColor)
         Color bColor = new Color(0, 0, 0);
         Color tColor = new Color(248, 199, 3);
 
-
+        // Paneler till info och knappar
         JPanel left = new JPanel();
         left.setLayout(new BorderLayout());
         add(left);
@@ -42,7 +42,8 @@ public class GUI extends JFrame {
         info.setLayout(new GridLayout(4, 0));
         left.add(info);
 
-
+        // JTextfield för att söka och knappar med actionListener(om man trycker enter)
+        // som hämtar info från användarens input i textfield
         searchField = new JTextField();
         searchField.setBackground(tColor);
         searchField.setFont(new Font("Serif", Font.BOLD, 18));
@@ -52,12 +53,12 @@ public class GUI extends JFrame {
         });
         leftTopPanel.add(searchField);
 
+        // JButton med samma funktionalitet som ovanstående fast knapp istället för enter
         JButton searchButton = new JButton("Search");
         searchButton.setBackground(tColor);
         searchButton.setForeground(bColor);
         searchButton.setOpaque(true);
         searchButton.setBorderPainted(true);
-        //searchButton.setBorder(BorderFactory.createRaisedBevelBorder());
         searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
         searchButton.setFont(new Font("Serif", Font.BOLD, 18));
         searchButton.addActionListener(ActionListener -> {
@@ -66,12 +67,12 @@ public class GUI extends JFrame {
         });
         leftTopPanel.add(searchButton);
 
+        // Knapp för att generera en random film från IMDBs top 250 lista
         JButton randomButton = new JButton("Random movie");
         randomButton.setBackground(tColor);
         randomButton.setForeground(bColor);
         randomButton.setOpaque(true);
         randomButton.setBorderPainted(true);
-        //randomButton.setBorder(BorderFactory.createRaisedBevelBorder());
         randomButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
         randomButton.setFont(new Font("Serif", Font.BOLD, 18));
         randomButton.addActionListener(e -> {
@@ -81,7 +82,7 @@ public class GUI extends JFrame {
         });
         leftTopPanel.add(randomButton);
 
-
+        // Skapar kategorier sen en tom JLabel till varje där vi sätter in infon från OMDB api
         JLabel title = new JLabel("TITLE:");
         title.setForeground(tColor);
         info.add(title);
@@ -131,11 +132,12 @@ public class GUI extends JFrame {
         right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
         add(right);
 
+        // VerticalGlue för att göra lagom avstånd med BoxLayout
         right.add(Box.createVerticalGlue());
 
         posterLabel = new JLabel();
         posterLabel.setForeground(tColor);
-        right.add(posterLabel); //Centrerad posterLabel
+        right.add(posterLabel);
         posterLabel.setAlignmentX(0.5F);
 
         ratingLabel = new JLabel();
@@ -156,7 +158,6 @@ public class GUI extends JFrame {
 
         setVisible(true);
     }
-
     public void updateFields(String title, String actors, String release, String genre, String plot, String posterURL, String rating) throws MalformedURLException {
         titleLabel.setText("<HTML>" + title + "</HTML>");
         actorsLabel.setText("<HTML>" + actors + "</HTML>");
