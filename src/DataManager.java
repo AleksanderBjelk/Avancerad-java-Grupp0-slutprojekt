@@ -1,5 +1,5 @@
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;  //GSON biblotek, maven
+import com.google.gson.JsonObject;  //GSON biblotek, maven gson:gson:2.10.1
 
 import javax.swing.*;
 import java.io.BufferedReader;
