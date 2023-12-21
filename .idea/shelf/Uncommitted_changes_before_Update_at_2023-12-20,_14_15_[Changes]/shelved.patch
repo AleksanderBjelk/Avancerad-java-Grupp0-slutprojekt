@@ -1,0 +1,128 @@
+Index: src/GUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\nimport java.awt.*;\nimport java.net.MalformedURLException;\nimport java.net.URL;\n\npublic class GUI extends JFrame {\n\n    private static JTextField searchField;\n    private JLabel titleLabel;\n    private JLabel actorsLabel;\n    private JLabel releaseLabel;\n    private JLabel plotLabel;\n    private JLabel posterLabel;\n    private JLabel ratingLabel;\n    private JLabel genreLabel;\n\n    public GUI() {\n        ImageIcon appIcon = new ImageIcon(\"src/Loggaimdb.png\"); // Ladda din logga från en fil\n        setIconImage(appIcon.getImage());\n        setExtendedState(MAXIMIZED_BOTH);\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\n        setLayout(new GridLayout(0, 2));\n        setTitle(\"EN BÄTTRE IMDB\");\n\n        // Färger till bakgrund (bColor) och text/knappar (tColor)\n        Color bColor = new Color(0, 0, 0);\n        Color tColor = new Color(248, 199, 3);\n\n        // Paneler till info och knappar\n        JPanel left = new JPanel();\n        left.setLayout(new BorderLayout());\n        add(left);\n\n        JPanel leftTopPanel = new JPanel();\n        leftTopPanel.setBackground(bColor);\n        leftTopPanel.setLayout(new GridLayout(0, 3));\n        left.add(leftTopPanel, BorderLayout.NORTH);\n\n\n        JPanel info = new JPanel();\n        info.setBackground(bColor);\n        info.setLayout(new GridLayout(4, 0));\n        left.add(info);\n\n        // JTextfield för att söka och knappar med actionListener(om man trycker enter)\n        // som hämtar info från användarens input i textfield\n        searchField = new JTextField();\n        searchField.setBackground(tColor);\n        searchField.setFont(new Font(\"Serif\", Font.BOLD, 18));\n        searchField.addActionListener(e -> {\n            String searchTerm = searchField.getText();\n            DataManager.getRequests(searchTerm, this);\n        });\n        leftTopPanel.add(searchField);\n\n        // JButton med samma funktionalitet som ovanstående fast knapp istället för enter\n        JButton searchButton = new JButton(\"Search\");\n        searchButton.setBackground(tColor);\n        searchButton.setForeground(bColor);\n        searchButton.setOpaque(true);\n        searchButton.setBorderPainted(true);\n        searchButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));\n        searchButton.setFont(new Font(\"Serif\", Font.BOLD, 18));\n        searchButton.addActionListener(ActionListener -> {\n            String searchTerm = searchField.getText();\n            DataManager.getRequests(searchTerm, this);\n        });\n        leftTopPanel.add(searchButton);\n\n        // Knapp för att generera en random film från IMDBs top 250 lista\n        JButton randomButton = new JButton(\"Random movie\");\n        randomButton.setBackground(tColor);\n        randomButton.setForeground(bColor);\n        randomButton.setOpaque(true);\n        randomButton.setBorderPainted(true);\n        randomButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));\n        randomButton.setFont(new Font(\"Serif\", Font.BOLD, 18));\n        randomButton.addActionListener(e -> {\n            String str = DataManager.fetchRandomMovieFromURL(\"https://raw.githubusercontent.com/jberkel/imdb-movie-links/master/top250.txt\");\n            DataManager.getRequests(str, this);\n\n        });\n        leftTopPanel.add(randomButton);\n\n        // Skapar kategorier sen en tom JLabel till varje där vi sätter in infon från OMDB api\n        JLabel title = new JLabel(\"TITLE:\");\n        title.setForeground(tColor);\n        info.add(title);\n        title.setFont(new Font(\"Serif\", Font.BOLD, 40));\n\n        titleLabel = new JLabel();\n        titleLabel.setForeground(tColor);\n        titleLabel.setFont(new Font(\"Serif\", Font.BOLD, 30));\n        info.add(titleLabel);\n\n\n        JLabel actors = new JLabel(\"ACTORS:\");\n        actors.setForeground(tColor);\n        info.add(actors);\n        actors.setFont(new Font(\"Serif\", Font.BOLD, 25));\n\n        actorsLabel = new JLabel();\n        actorsLabel.setForeground(tColor);\n        actorsLabel.setFont(new Font(\"Serif\", Font.BOLD, 20));\n        info.add(actorsLabel);\n\n\n        JLabel release = new JLabel(\"RELEASE DATE:\");\n        release.setForeground(tColor);\n        info.add(release);\n        release.setFont(new Font(\"Serif\", Font.BOLD, 25));\n\n        releaseLabel = new JLabel();\n        releaseLabel.setForeground(tColor);\n        releaseLabel.setFont(new Font(\"Serif\", Font.BOLD, 20));\n        info.add(releaseLabel);\n\n\n        JLabel genre = new JLabel(\"GENRE: \");\n        genre.setForeground(tColor);\n        genre.setFont(new Font(\"Serif\", Font.BOLD, 25));\n        info.add(genre);\n\n        genreLabel = new JLabel();\n        genreLabel.setForeground(tColor);\n        genreLabel.setFont(new Font(\"Serif\", Font.BOLD, 20));\n        info.add(genreLabel);\n\n\n        JPanel right = new JPanel();\n        right.setBackground(bColor);\n        right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));\n        add(right);\n\n        // VerticalGlue för att göra lagom avstånd med BoxLayout\n        right.add(Box.createVerticalGlue());\n\n        posterLabel = new JLabel();\n        posterLabel.setForeground(tColor);\n        right.add(posterLabel);\n        posterLabel.setAlignmentX(0.5F);\n\n        ratingLabel = new JLabel();\n        ratingLabel.setForeground(tColor);\n        ratingLabel.setAlignmentX(0.5F);\n        ratingLabel.setFont(new Font(\"Serif\", Font.BOLD, 40));\n        right.add(ratingLabel);\n\n        right.add(Box.createVerticalGlue());\n\n        plotLabel = new JLabel();\n        plotLabel.setForeground(tColor);\n        plotLabel.setAlignmentX(0.5F);\n        plotLabel.setFont(new Font(\"Serif\", Font.BOLD, 20));\n        right.add(plotLabel);\n\n        right.add(Box.createVerticalGlue());\n\n        setVisible(true);\n    }\n    public void updateFields(String title, String actors, String release, String genre, String plot, String posterURL, String rating) throws MalformedURLException {\n        titleLabel.setText(\"<HTML>\" + title + \"</HTML>\");\n        actorsLabel.setText(\"<HTML>\" + actors + \"</HTML>\");\n        releaseLabel.setText(\"<HTML>\" + release + \"</HTML>\");\n        genreLabel.setText(\"<HTML>\" + genre + \"</HTML>\");\n        plotLabel.setText(\"<HTML>\" + plot + \"</HTML>\");\n        ratingLabel.setText(\"User ratings: \" + rating);\n        ImageIcon posterIcon = new ImageIcon(new URL(posterURL));\n        posterLabel.setIcon(posterIcon);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GUI.java b/src/GUI.java
+--- a/src/GUI.java	(revision cb33509a1654d38215835a11bc071f7f9c73c412)
++++ b/src/GUI.java	(date 1702986435367)
+@@ -86,44 +86,44 @@
+         JLabel title = new JLabel("TITLE:");
+         title.setForeground(tColor);
+         info.add(title);
+-        title.setFont(new Font("Serif", Font.BOLD, 40));
++        title.setFont(new Font("Serif", Font.BOLD, 50));
+ 
+         titleLabel = new JLabel();
+         titleLabel.setForeground(tColor);
+-        titleLabel.setFont(new Font("Serif", Font.BOLD, 30));
++        titleLabel.setFont(new Font("Serif", Font.BOLD, 40));
+         info.add(titleLabel);
+ 
+ 
+         JLabel actors = new JLabel("ACTORS:");
+         actors.setForeground(tColor);
+         info.add(actors);
+-        actors.setFont(new Font("Serif", Font.BOLD, 25));
++        actors.setFont(new Font("Serif", Font.BOLD, 35));
+ 
+         actorsLabel = new JLabel();
+         actorsLabel.setForeground(tColor);
+-        actorsLabel.setFont(new Font("Serif", Font.BOLD, 20));
++        actorsLabel.setFont(new Font("Serif", Font.BOLD, 30));
+         info.add(actorsLabel);
+ 
+ 
+         JLabel release = new JLabel("RELEASE DATE:");
+         release.setForeground(tColor);
+         info.add(release);
+-        release.setFont(new Font("Serif", Font.BOLD, 25));
++        release.setFont(new Font("Serif", Font.BOLD, 35));
+ 
+         releaseLabel = new JLabel();
+         releaseLabel.setForeground(tColor);
+-        releaseLabel.setFont(new Font("Serif", Font.BOLD, 20));
++        releaseLabel.setFont(new Font("Serif", Font.BOLD, 30));
+         info.add(releaseLabel);
+ 
+ 
+         JLabel genre = new JLabel("GENRE: ");
+         genre.setForeground(tColor);
+-        genre.setFont(new Font("Serif", Font.BOLD, 25));
++        genre.setFont(new Font("Serif", Font.BOLD, 35));
+         info.add(genre);
+ 
+         genreLabel = new JLabel();
+         genreLabel.setForeground(tColor);
+-        genreLabel.setFont(new Font("Serif", Font.BOLD, 20));
++        genreLabel.setFont(new Font("Serif", Font.BOLD, 30));
+         info.add(genreLabel);
+ 
+ 
+@@ -143,7 +143,7 @@
+         ratingLabel = new JLabel();
+         ratingLabel.setForeground(tColor);
+         ratingLabel.setAlignmentX(0.5F);
+-        ratingLabel.setFont(new Font("Serif", Font.BOLD, 40));
++        ratingLabel.setFont(new Font("Serif", Font.BOLD, 50));
+         right.add(ratingLabel);
+ 
+         right.add(Box.createVerticalGlue());
+@@ -151,7 +151,7 @@
+         plotLabel = new JLabel();
+         plotLabel.setForeground(tColor);
+         plotLabel.setAlignmentX(0.5F);
+-        plotLabel.setFont(new Font("Serif", Font.BOLD, 20));
++        plotLabel.setFont(new Font("Serif", Font.BOLD, 30));
+         right.add(plotLabel);
+ 
+         right.add(Box.createVerticalGlue());
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"9def1818-8444-48ff-b55a-d00ed9a9af3a\" name=\"Changes\" comment=\"små fix\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 5\n}</component>\n  <component name=\"ProjectId\" id=\"2ZRDKQnVAO6d6Eanm1we01JYUIu\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;Application.Project.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\n    &quot;last.edited.regexp&quot;: &quot;0000000125  540497   9.2  The Shawshank Redemption (1994)&quot;,\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;\n  }\n}</component>\n  <component name=\"RunManager\">\n    <configuration name=\"Project\" type=\"Application\" factoryName=\"Application\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"Avancerad-java-Grupp0-slutprojekt\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"9def1818-8444-48ff-b55a-d00ed9a9af3a\" name=\"Changes\" comment=\"\" />\n      <created>1702375936237</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1702375936237</updated>\n    </task>\n    <task id=\"LOCAL−00001\" summary=\"Skapar GUI klass\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702472997134</created>\n      <option name=\"number\" value=\"LOCAL−00001\" />\n      <option name=\"presentableId\" value=\"LOCAL−00001\" />\n      <updated>1702472997134</updated>\n    </task>\n    <task id=\"LOCAL−00002\" summary=\"rätt länk (detta fall star wars)\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702476173629</created>\n      <option name=\"number\" value=\"LOCAL−00002\" />\n      <option name=\"presentableId\" value=\"LOCAL−00002\" />\n      <updated>1702476173629</updated>\n    </task>\n    <task id=\"LOCAL−00003\" summary=\"variabel movie\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702476831699</created>\n      <option name=\"number\" value=\"LOCAL−00003\" />\n      <option name=\"presentableId\" value=\"LOCAL−00003\" />\n      <updated>1702476831699</updated>\n    </task>\n    <task id=\"LOCAL−00004\" summary=\"Lägger till texfields, json parsing och att man kan använda &quot;searchField&quot; som sökning\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702544701648</created>\n      <option name=\"number\" value=\"LOCAL−00004\" />\n      <option name=\"presentableId\" value=\"LOCAL−00004\" />\n      <updated>1702544701648</updated>\n    </task>\n    <task id=\"LOCAL−00005\" summary=\"fixar så vi får en bild\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702562568547</created>\n      <option name=\"number\" value=\"LOCAL−00005\" />\n      <option name=\"presentableId\" value=\"LOCAL−00005\" />\n      <updated>1702562568547</updated>\n    </task>\n    <task id=\"LOCAL−00006\" summary=\"flyttar metod bara för att det ska enklare förstå programmets struktur\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702632703893</created>\n      <option name=\"number\" value=\"LOCAL−00006\" />\n      <option name=\"presentableId\" value=\"LOCAL−00006\" />\n      <updated>1702632703893</updated>\n    </task>\n    <task id=\"LOCAL−00007\" summary=\"fixar font\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702634626866</created>\n      <option name=\"number\" value=\"LOCAL−00007\" />\n      <option name=\"presentableId\" value=\"LOCAL−00007\" />\n      <updated>1702634626866</updated>\n    </task>\n    <task id=\"LOCAL−00008\" summary=\"tar bort try catch\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702635847547</created>\n      <option name=\"number\" value=\"LOCAL−00008\" />\n      <option name=\"presentableId\" value=\"LOCAL−00008\" />\n      <updated>1702635847547</updated>\n    </task>\n    <task id=\"LOCAL−00009\" summary=\"rensar\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702636328046</created>\n      <option name=\"number\" value=\"LOCAL−00009\" />\n      <option name=\"presentableId\" value=\"LOCAL−00009\" />\n      <updated>1702636328046</updated>\n    </task>\n    <task id=\"LOCAL−00010\" summary=\"wrappar json datan\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702645063053</created>\n      <option name=\"number\" value=\"LOCAL−00010\" />\n      <option name=\"presentableId\" value=\"LOCAL−00010\" />\n      <updated>1702645063053</updated>\n    </task>\n    <task id=\"LOCAL−00011\" summary=\"lägger till logga som inte funkar\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702651152614</created>\n      <option name=\"number\" value=\"LOCAL−00011\" />\n      <option name=\"presentableId\" value=\"LOCAL−00011\" />\n      <updated>1702651152614</updated>\n    </task>\n    <task id=\"LOCAL−00012\" summary=\"ändrar färg på searchField\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702887326931</created>\n      <option name=\"number\" value=\"LOCAL−00012\" />\n      <option name=\"presentableId\" value=\"LOCAL−00012\" />\n      <updated>1702887326931</updated>\n    </task>\n    <task id=\"LOCAL−00013\" summary=\"flyttar ner poster\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702896906364</created>\n      <option name=\"number\" value=\"LOCAL−00013\" />\n      <option name=\"presentableId\" value=\"LOCAL−00013\" />\n      <updated>1702896906364</updated>\n    </task>\n    <task id=\"LOCAL−00014\" summary=\"Fixar namn och borderline på knappar\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702901680505</created>\n      <option name=\"number\" value=\"LOCAL−00014\" />\n      <option name=\"presentableId\" value=\"LOCAL−00014\" />\n      <updated>1702901680505</updated>\n    </task>\n    <task id=\"LOCAL−00015\" summary=\"random button funkar, plus lite städ\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702905926118</created>\n      <option name=\"number\" value=\"LOCAL−00015\" />\n      <option name=\"presentableId\" value=\"LOCAL−00015\" />\n      <updated>1702905926118</updated>\n    </task>\n    <task id=\"LOCAL−00016\" summary=\"små fix\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1702907227194</created>\n      <option name=\"number\" value=\"LOCAL−00016\" />\n      <option name=\"presentableId\" value=\"LOCAL−00016\" />\n      <updated>1702907227194</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"17\" />\n    <servers />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Skapar GUI klass\" />\n    <MESSAGE value=\"rätt länk (detta fall star wars)\" />\n    <MESSAGE value=\"variabel movie\" />\n    <MESSAGE value=\"Lägger till texfields, json parsing och att man kan använda &quot;searchField&quot; som sökning\" />\n    <MESSAGE value=\"fixar så vi får en bild\" />\n    <MESSAGE value=\"flyttar metod bara för att det ska enklare förstå programmets struktur\" />\n    <MESSAGE value=\"fixar font\" />\n    <MESSAGE value=\"tar bort try catch\" />\n    <MESSAGE value=\"rensar\" />\n    <MESSAGE value=\"wrappar json datan\" />\n    <MESSAGE value=\"lägger till logga som inte funkar\" />\n    <MESSAGE value=\"ändrar färg på searchField\" />\n    <MESSAGE value=\"flyttar ner poster\" />\n    <MESSAGE value=\"Fixar namn och borderline på knappar\" />\n    <MESSAGE value=\"random button funkar, plus lite städ\" />\n    <MESSAGE value=\"små fix\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"små fix\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision cb33509a1654d38215835a11bc071f7f9c73c412)
++++ b/.idea/workspace.xml	(date 1703007213053)
+@@ -4,8 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="små fix">
++    <list default="true" id="9def1818-8444-48ff-b55a-d00ed9a9af3a" name="Changes" comment="liten kommentar">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -178,7 +179,14 @@
+       <option name="presentableId" value="LOCAL−00016" />
+       <updated>1702907227194</updated>
+     </task>
+-    <option name="localTasksCounter" value="17" />
++    <task id="LOCAL−00017" summary="liten kommentar">
++      <option name="closed" value="true" />
++      <created>1702984409481</created>
++      <option name="number" value="LOCAL−00017" />
++      <option name="presentableId" value="LOCAL−00017" />
++      <updated>1702984409481</updated>
++    </task>
++    <option name="localTasksCounter" value="18" />
+     <servers />
+   </component>
+   <component name="VcsManagerConfiguration">
+@@ -198,6 +206,7 @@
+     <MESSAGE value="Fixar namn och borderline på knappar" />
+     <MESSAGE value="random button funkar, plus lite städ" />
+     <MESSAGE value="små fix" />
+-    <option name="LAST_COMMIT_MESSAGE" value="små fix" />
++    <MESSAGE value="liten kommentar" />
++    <option name="LAST_COMMIT_MESSAGE" value="liten kommentar" />
+   </component>
+ </project>
+\ No newline at end of file

@@ -15,7 +15,7 @@ public class DataManager {
     public static String fetchRandomMovieFromURL(String topUrl) {
 
         // ArrayList där vi sparar Strings med filmnamnet från IMDBs topp 250 lista
-        ArrayList<String> Top250 = new ArrayList<>();
+        ArrayList<String> top250 = new ArrayList<>();
 
         try {
 
@@ -39,11 +39,11 @@ public class DataManager {
 
 
                 while ((line = reader.readLine()) != null) {
-                    Top250.add(line.substring(32, line.length() - 7) + "\n");
+                    top250.add(line.substring(32, line.length() - 7) + "\n");
                 }
                 reader.close();
 
-                return Top250.get(new Random().nextInt(250));
+                return top250.get(new Random().nextInt(250));
 
 
             } else { //404 403 402 etc error koder
